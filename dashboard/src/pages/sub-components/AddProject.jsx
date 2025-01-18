@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -53,6 +53,17 @@ const AddProject = () => {
     formData.append("deployed", deployed);
     formData.append("projectBanner", projectBanner);
     dispatch(addNewProject(formData));
+
+    setTitle("");
+  setDescription("");
+  setGitRepoLink("");
+  setProjectLink("");
+  setTechnologies("");
+  setStack("");
+  setDeployed("");
+  setProjectBanner("");
+  setProjectBannerPreview("");
+  
   };
   useEffect(() => {
     if (error) {
@@ -220,10 +231,8 @@ const AddProject = () => {
                       {projectBannerPreview ? (
                         <img
                           className="mx-auto h-[250px] w-full text-gray-300"
-                          viewBox="0 0 24 24"
-                          src={
-                            projectBannerPreview && `${projectBannerPreview}`
-                          }
+                          src={projectBannerPreview}
+                          alt="Project Banner"
                         />
                       ) : (
                         <svg

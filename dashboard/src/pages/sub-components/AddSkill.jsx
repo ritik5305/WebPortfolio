@@ -4,7 +4,7 @@ import {
   getAllSkills,
   resetSkillSlice,
 } from "@/store/slices/skillSlice";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,12 @@ const AddSkill = () => {
     formData.append("proficiency", proficiency);
     formData.append("svg", svg);
     dispatch(addNewSkill(formData));
+     
+    setTitle("")
+    setProficiency("")
+    setSvg("")
+    setSvgPreview("")
+
   };
 
   useEffect(() => {

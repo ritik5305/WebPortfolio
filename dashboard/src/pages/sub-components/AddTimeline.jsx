@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import SpecialLoadingButton from "./SpecialLoadingButton";
@@ -28,6 +28,11 @@ const AddTimeline = () => {
     formData.append("from", from);
     formData.append("to", to);
     dispatch(addNewTimeline(formData));
+
+    setTitle("")
+    setDescription("")
+    setFrom("")
+    setTo("")
   };
 
   const dispatch = useDispatch();
@@ -127,7 +132,7 @@ const AddTimeline = () => {
             {!loading ? (
               <Button
                 type="submit"
-                onClick={() => handleAddNewSkill()}
+                onClick={() => handleAddNewTimeline()}
                 className="w-full"
               >
                 Add Timeline

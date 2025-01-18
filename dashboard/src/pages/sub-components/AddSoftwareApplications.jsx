@@ -36,6 +36,10 @@ const AddSoftwareApplications = () => {
     formData.append("name", name);
     formData.append("svg", svg);
     dispatch(addNewSoftwareApplication(formData));
+
+    setName("")
+    setSvg("")
+    setSvgPreview("")
   };
 
   useEffect(() => {
