@@ -11,75 +11,71 @@ const projectSlice = createSlice({
     singleProject: {},
   },
   reducers: {
-    getAllProjectsRequest(state, action) {
-      state.projects = [];
-      state.error = null;
+    getAllProjectsRequest(state) {
       state.loading = true;
+      state.error = null;
+      state.projects = [];
     },
     getAllProjectsSuccess(state, action) {
-      state.projects = action.payload;
-      state.error = null;
       state.loading = false;
+      state.error = null;
+      state.projects = action.payload;
     },
     getAllProjectsFailed(state, action) {
-      state.projects = state.projects;
-      state.error = action.payload;
       state.loading = false;
+      state.error = action.payload;
     },
-    addNewProjectRequest(state, action) {
+    addNewProjectRequest(state) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
     addNewProjectSuccess(state, action) {
-      state.message = action.payload;
       state.loading = false;
       state.error = null;
+      state.message = action.payload;
     },
     addNewProjectFailed(state, action) {
-      state.error = action.payload;
       state.loading = false;
-      state.message = null;
+      state.error = action.payload;
     },
-    deleteProjectRequest(state, action) {
+    deleteProjectRequest(state) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
     deleteProjectSuccess(state, action) {
-      state.error = null;
       state.loading = false;
+      state.error = null;
       state.message = action.payload;
     },
     deleteProjectFailed(state, action) {
-      state.error = action.payload;
       state.loading = false;
-      state.message = null;
+      state.error = action.payload;
     },
-    updateProjectRequest(state, action) {
+    updateProjectRequest(state) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
     updateProjectSuccess(state, action) {
       state.loading = false;
-      state.message = action.payload;
       state.error = null;
+      state.message = action.payload;
     },
     updateProjectFailed(state, action) {
+      state.loading = false;
       state.error = action.payload;
-      state.loading = false;
-      state.message = null;
     },
-    resetProjectSlice(state, action) {
-      state.error = null;
-      state.projects = state.projects;
-      state.message = null;
+    resetProjectSlice(state) {
       state.loading = false;
-    },
-    clearAllErrors(state, action) {
       state.error = null;
-      state.projects = state.projects;
+      state.message = null;
+      state.projects = [];
+      state.singleProject = {};
+    },
+    clearAllErrors(state) {
+      state.error = null;
     },
   },
 });
