@@ -10,56 +10,60 @@ const softwareApplicationSlice = createSlice({
     message: null,
   },
   reducers: {
-    fetchSoftwareApplicationsRequest(state) {
-      state.loading = true;
-      state.error = null;
+    getAllsoftwareApplicationsRequest(state, action) {
       state.softwareApplications = [];
-    },
-    fetchSoftwareApplicationsSuccess(state, action) {
-      state.loading = false;
       state.error = null;
+      state.loading = true;
+    },
+    getAllsoftwareApplicationsSuccess(state, action) {
       state.softwareApplications = action.payload;
-    },
-    fetchSoftwareApplicationsFailed(state, action) {
+      state.error = null;
       state.loading = false;
-      state.error = action.payload;
     },
-    addSoftwareApplicationRequest(state) {
+    getAllsoftwareApplicationsFailed(state, action) {
+      state.softwareApplications = state.softwareApplications;
+      state.error = action.payload;
+      state.loading = false;
+    },
+    addNewsoftwareApplicationsRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
-    addSoftwareApplicationSuccess(state, action) {
-      state.loading = false;
+    addNewsoftwareApplicationsSuccess(state, action) {
       state.error = null;
+      state.loading = false;
       state.message = action.payload;
     },
-    addSoftwareApplicationFailed(state, action) {
-      state.loading = false;
+    addNewsoftwareApplicationsFailed(state, action) {
       state.error = action.payload;
+      state.loading = false;
+      state.message = null;
     },
-    deleteSoftwareApplicationRequest(state) {
+    deletesoftwareApplicationsRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
-    deleteSoftwareApplicationSuccess(state, action) {
-      state.loading = false;
+    deletesoftwareApplicationsSuccess(state, action) {
       state.error = null;
+      state.loading = false;
       state.message = action.payload;
     },
-    deleteSoftwareApplicationFailed(state, action) {
-      state.loading = false;
+    deletesoftwareApplicationsFailed(state, action) {
       state.error = action.payload;
-    },
-    resetSoftwareApplicationSlice(state) {
       state.loading = false;
-      state.error = null;
       state.message = null;
-      state.softwareApplications = [];
     },
-    clearAllErrors(state) {
+    resetSoftwareApplicationSlice(state, action) {
       state.error = null;
+      state.softwareApplications = state.softwareApplications;
+      state.message = null;
+      state.loading = false;
+    },
+    clearAllErrors(state, action) {
+      state.error = null;
+      state.softwareApplications = state.softwareApplications;
     },
   },
 });

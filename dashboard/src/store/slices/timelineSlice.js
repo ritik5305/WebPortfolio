@@ -10,35 +10,37 @@ const timelineSlice = createSlice({
     message: null,
   },
   reducers: {
-    fetchTimelinesRequest(state) {
+    getAllTimelineRequest(state, action) {
       state.timeline = [];
       state.error = null;
       state.loading = true;
     },
-    fetchTimelinesSuccess(state, action) {
+    getAllTimelineSuccess(state, action) {
       state.timeline = action.payload;
       state.error = null;
       state.loading = false;
     },
-    fetchTimelinesFailed(state, action) {
+    getAllTimelineFailed(state, action) {
+      state.timeline = state.timeline;
       state.error = action.payload;
       state.loading = false;
     },
-    addTimelineRequest(state) {
+    addNewTimelineRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
-    addTimelineSuccess(state, action) {
+    addNewTimelineSuccess(state, action) {
       state.error = null;
       state.loading = false;
       state.message = action.payload;
     },
-    addTimelineFailed(state, action) {
+    addNewTimelineFailed(state, action) {
       state.error = action.payload;
       state.loading = false;
+      state.message = null;
     },
-    deleteTimelineRequest(state) {
+    deleteTimelineRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
@@ -51,14 +53,17 @@ const timelineSlice = createSlice({
     deleteTimelineFailed(state, action) {
       state.error = action.payload;
       state.loading = false;
+      state.message = null;
     },
-    resetTimelineSlice(state) {
+    resetTimelineSlice(state, action) {
       state.error = null;
+      state.timeline = state.timeline;
       state.message = null;
       state.loading = false;
     },
-    clearAllErrors(state) {
+    clearAllErrors(state, action) {
       state.error = null;
+      state = state.timeline;
     },
   },
 });

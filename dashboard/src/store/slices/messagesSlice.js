@@ -10,21 +10,22 @@ const messageSlice = createSlice({
     message: null,
   },
   reducers: {
-    fetchMessagesRequest(state) {
+    getAllMessagesRequest(state, action) {
       state.messages = [];
       state.error = null;
       state.loading = true;
     },
-    fetchMessagesSuccess(state, action) {
+    getAllMessagesSuccess(state, action) {
       state.messages = action.payload;
       state.error = null;
       state.loading = false;
     },
-    fetchMessagesFailed(state, action) {
+    getAllMessagesFailed(state, action) {
+      state.messages = state.messages;
       state.error = action.payload;
       state.loading = false;
     },
-    deleteMessageRequest(state) {
+    deleteMessageRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
@@ -37,18 +38,20 @@ const messageSlice = createSlice({
     deleteMessageFailed(state, action) {
       state.error = action.payload;
       state.loading = false;
+      state.message = null;
     },
-    resetMessageSlice(state) {
+    resetMessageSlice(state, action) {
       state.error = null;
+      state.messages = state.messages;
       state.message = null;
       state.loading = false;
     },
-    clearAllErrors(state) {
+    clearAllErrors(state, action) {
       state.error = null;
+      state.messages = state.messages;
     },
   },
 });
-
 
 export const getAllMessages = () => async (dispatch) => {
   dispatch(messageSlice.actions.getAllMessagesRequest());

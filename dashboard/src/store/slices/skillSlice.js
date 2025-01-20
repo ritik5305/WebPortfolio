@@ -10,70 +10,75 @@ const skillSlice = createSlice({
     message: null,
   },
   reducers: {
-    fetchSkillsRequest(state) {
-      state.loading = true;
-      state.error = null;
+    getAllSkillsRequest(state, action) {
       state.skills = [];
-    },
-    fetchSkillsSuccess(state, action) {
-      state.loading = false;
       state.error = null;
+      state.loading = true;
+    },
+    getAllSkillsSuccess(state, action) {
       state.skills = action.payload;
-    },
-    fetchSkillsFailed(state, action) {
+      state.error = null;
       state.loading = false;
-      state.error = action.payload;
     },
-    addSkillRequest(state) {
+    getAllSkillsFailed(state, action) {
+      state.skills = state.skills;
+      state.error = action.payload;
+      state.loading = false;
+    },
+    addNewSkillRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
-    addSkillSuccess(state, action) {
-      state.loading = false;
+    addNewSkillSuccess(state, action) {
       state.error = null;
+      state.loading = false;
       state.message = action.payload;
     },
-    addSkillFailed(state, action) {
-      state.loading = false;
+    addNewSkillFailed(state, action) {
       state.error = action.payload;
+      state.loading = false;
+      state.message = null;
     },
-    deleteSkillRequest(state) {
+    deleteSkillRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
     deleteSkillSuccess(state, action) {
-      state.loading = false;
       state.error = null;
+      state.loading = false;
       state.message = action.payload;
     },
     deleteSkillFailed(state, action) {
-      state.loading = false;
       state.error = action.payload;
+      state.loading = false;
+      state.message = null;
     },
-    updateSkillRequest(state) {
+    updateSkillRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
     updateSkillSuccess(state, action) {
       state.loading = false;
-      state.error = null;
       state.message = action.payload;
+      state.error = null;
     },
     updateSkillFailed(state, action) {
-      state.loading = false;
       state.error = action.payload;
-    },
-    resetSkillSlice(state) {
       state.loading = false;
-      state.error = null;
       state.message = null;
-      state.skills = [];
     },
-    clearAllErrors(state) {
+    resetSkillSlice(state, action) {
       state.error = null;
+      state.skills = state.skills;
+      state.message = null;
+      state.loading = false;
+    },
+    clearAllErrors(state, action) {
+      state.error = null;
+      state.skills = state.skills;
     },
   },
 });
